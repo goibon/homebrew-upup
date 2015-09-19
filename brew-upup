@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+require 'english'
+require 'optparse'
+
+commands = %w(update upgrade)
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: brew upup [options]'
+
+  opts.on('-c', '--cleanup', "Run 'brew cleanup' command after upgrading") do |c|
+    options[:clean] = c
+    commands << 'cleanup'
+  end
+
+  opts.on('-v', '--[no-]verbose', 'Run verbosely') do |v|
+    options[:verbose] = v
+  end
+end.parse!
+
+def callbrew(command, isVerbose)
+  output = []
+  puts "brew #{command}" if isVerbose
+  IO.popen("brew #{command}") do |f|
+    f.each do |line|
+      puts line.chomp
+      output << line.chomp
+    end
+  end
+  abort("brew #{command} failed") if $CHILD_STATUS.to_i != 0
+  output
+end
+
+commands.each do |command|
+  if callbrew(command, options[:verbose]).any? { |val| /up-to-date/i =~ val }
+    # No need to run the rest of the commands as no updates were available
+    exit
+  end
+end
