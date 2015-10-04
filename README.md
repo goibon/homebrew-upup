@@ -13,7 +13,7 @@ External command for `homebrew` for the lazy people who do not wish to write mor
 Will call `brew update` followed by `brew upgrade`.
 
 * `-c` calls `brew cleanup`as the last step.
-* `-v` prints which command is being executed.
+* `-q` runs quietly with no output unless something goes wrong.
 
 ## License
 
