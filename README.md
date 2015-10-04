@@ -2,10 +2,18 @@
 
 External command for `homebrew` for the lazy people who do not wish to write more than a single command to upgrade their packages and uninstall the old versions of them.
 
+## Installation
+
+`$ brew tap goibon/taps && brew install brew-upup`
+
 ## Usage
 
-Simply type `brew upup`, this will call `brew update`followed by `brew upgrade` if homebrew was updated.
-Use `-c` or `--cleanup` will call `brew cleanup` afterwards to remove old versions of packages.
+`$ brew upup -[cv]`
+
+Will call `brew update` followed by `brew upgrade`.
+
+* `-c` calls `brew cleanup`as the last step.
+* `-v` prints which command is being executed.
 
 ## License
 
