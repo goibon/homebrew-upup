@@ -4,7 +4,7 @@ External command for `homebrew` for the lazy people who do not wish to write mor
 
 ## Installation
 
-`$ brew tap goibon/taps && brew install brew-upup`
+`$ brew tap goibon/upup`
 
 ## Usage
 
