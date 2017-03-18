@@ -8,7 +8,7 @@ External command for `homebrew` for the lazy people who do not wish to write mor
 
 ## Usage
 
-`$ brew upup -[cv]`
+`$ brew upup -[cq]`
 
 Will call `brew update` followed by `brew upgrade`.
 
