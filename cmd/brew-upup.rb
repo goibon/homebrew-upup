@@ -1,24 +1,34 @@
+require "cli/parser"
 
-if ARGV.flag? "--help"
-  puts <<-EOS.undent
-    Usage:
-      brew upup [-c] [-q]
+module Homebrew
+  module_function
 
-    -c, --cleanup: calls brew cleanup after the last step
-    -q, --quiet: runs quietly with no output unless something goes wrong
-  EOS
-  exit
-end
+  def upup_args
+    Homebrew::CLI::Parser.new do
+      usage_banner <<~EOS
+      `upup` [`--cleanup`] [`--quiet`]
+      EOS
+      switch "-c", "--cleanup",
+        description: "Calls brew cleanup after the last step"
+      switch "-q", "--quiet",
+        description: "Runs quietly with no output unless something goes wrong"
+    end
+  end
 
-commands = %w(update upgrade)
-commands << "cleanup" if ARGV.flag? "--cleanup"
+  def callbrew(command)
+    puts "brew #{command}" unless Homebrew.args.quiet?
+    system "brew", command
+    abort("brew #{command} failed") unless $CHILD_STATUS.success?
+  end
 
-def callbrew(command)
-  puts "brew #{command}" unless ARGV.flag? "--quiet"
-  system "brew", command
-  abort("brew #{command} failed") unless $CHILD_STATUS.success?
-end
+  def upup
+    upup_args.parse
 
-commands.each do |command|
-  callbrew(command)
+    commands = %w(update upgrade)
+    commands << "cleanup" if Homebrew.args.cleanup?
+
+    commands.each do |command|
+      callbrew(command)
+    end
+  end
 end
