@@ -1,4 +1,3 @@
-require "english"
 
 if ARGV.flag? "--help"
   puts <<-EOS.undent
