@@ -8,18 +8,22 @@ External command for `homebrew` for the lazy people who do not wish to write mor
 
 ## Usage
 
-`$ brew upup -[cq]`
+```
+Usage: brew upup [--cleanup] [--quiet]
 
-Will call `brew update` followed by `brew upgrade`.
+    -c, --cleanup                    Calls brew cleanup after the last step
+    -q, --quiet                      Runs quietly with no output unless
+                                     something goes wrong
+    -h, --help                       Show this message.
+```
 
-* `-c` calls `brew cleanup`as the last step.
-* `-q` runs quietly with no output unless something goes wrong.
+Will call `brew update` followed by `brew upgrade` optionally followed by `brew cleanup` if the `--cleanup` option was passed.
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Kasper Lind Sørensen
+Copyright (c) 2020 Kasper Lind Sørensen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
