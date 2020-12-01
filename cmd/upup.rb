@@ -15,20 +15,20 @@ module Homebrew
     end
   end
 
-  def callbrew(command)
-    puts "brew #{command}" unless Homebrew.args.quiet?
+  def callbrew(command, args)
+    puts "brew #{command}" unless args.quiet?
     system "brew", command
     abort("brew #{command} failed") unless $CHILD_STATUS.success?
   end
 
   def upup
-    upup_args.parse
+    args = upup_args.parse
 
     commands = %w(update upgrade)
-    commands << "cleanup" if Homebrew.args.cleanup?
+    commands << "cleanup" if args.cleanup?
 
     commands.each do |command|
-      callbrew(command)
+      callbrew(command, args)
     end
   end
 end
