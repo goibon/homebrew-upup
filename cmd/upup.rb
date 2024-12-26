@@ -7,7 +7,7 @@ module Homebrew
         EOS
 
         switch "-c", "--cleanup",
-          description: "Calls brew cleanup after the last step"
+          description: "Calls `brew cleanup` after the last step"
         switch "-q", "--quiet",
           description: "Runs quietly with no output unless something goes wrong"
       end
