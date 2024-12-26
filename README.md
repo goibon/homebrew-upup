@@ -11,10 +11,15 @@ External command for `homebrew` for the lazy people who do not wish to write mor
 ```
 Usage: brew upup [--cleanup] [--quiet]
 
-    -c, --cleanup                    Calls brew cleanup after the last step
-    -q, --quiet                      Runs quietly with no output unless
-                                     something goes wrong
-    -h, --help                       Show this message.
+Run brew update and brew upgrade in one go, optionally with a subsequent
+brew cleanup call.
+
+  -c, --cleanup                    Calls brew cleanup after the last step
+  -q, --quiet                      Runs quietly with no output unless something
+                                   goes wrong
+  -d, --debug                      Display any debugging information.
+  -v, --verbose                    Make some output more verbose.
+  -h, --help                       Show this message.
 ```
 
 Will call `brew update` followed by `brew upgrade` optionally followed by `brew cleanup` if the `--cleanup` option was passed.
