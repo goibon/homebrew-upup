@@ -2,6 +2,10 @@ module Homebrew
   module Cmd
     class Upup < AbstractCommand
       cmd_args do
+        description <<~EOS
+          Run `brew update` and `brew upgrade` in one go, optionally with a subsequent `brew cleanup` call.
+        EOS
+
         switch "-c", "--cleanup",
           description: "Calls brew cleanup after the last step"
         switch "-q", "--quiet",
